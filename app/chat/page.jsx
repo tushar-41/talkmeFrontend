@@ -1,5 +1,6 @@
 'use client';
 import { Chatbox } from '@/components/Chatbox';
+import UserMessage from '@/components/UserMessage';
 import React, { useState } from 'react'
 
 const ChatPage = () => {
@@ -43,7 +44,7 @@ const ChatPage = () => {
             </div>
             {selectedUser ? (
             <div className='h-full w-150 bg-blue-300/50 rounded-r-md'>
-                user mesagessss
+                {/* <UserMessage /> */}
             </div>) 
             :
             (<div className='h-full w-150 bg-blue-300/50 flex items-center justify-center font-mono text-5xl font-bold rounded-r-md'>
