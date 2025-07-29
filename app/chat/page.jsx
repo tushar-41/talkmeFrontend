@@ -21,6 +21,11 @@ const ChatPage = () => {
 
     const handleInputchange = ((e) => {
        const inputUser =  dummyUser.filter((u) => u.id === e.value.id);
+       setMessageInput(e.value);
+       setMessages(
+        [...messages,messageInput]
+       );
+
 
     })
 
@@ -31,7 +36,7 @@ const ChatPage = () => {
             <div className='h-full w-50 bg-blue-300/50 rounded-l-md flex flex-col items-center'>
                {/* Chatbox component */}
                 <h2 className='text-3xl text-center mr-2 mt-3 font-bold font-mono'>Users</h2>
-                <input placeholder='Search user...' autoFocus className='mt-2 border-2 w-40 p-1 rounded-3xl mb-2 text-center placeholder-black' onChange={(e) => handleInputchange(e.target)}/>
+                <input placeholder='Search user...' autoFocus className='mt-2 border-2 hover:border-blue-700 w-40 p-1 rounded-3xl mb-2 text-center placeholder-black' onChange={(e) => handleInputchange(e.target)}/>
                 <div className='flex flex-col gap-5 w-40'>
                    {dummyUser.filter((user) => user.id !== currentUser.id).map((user) => (
                     <div className='border-2 border-gray-500 rounded-md w-full hover:cursor-pointer pl-1 pt-1' key={user.id} onClick={() => setSelectedUser(user)}>
@@ -39,13 +44,22 @@ const ChatPage = () => {
                             <p className={`text-xs font-mono ${user.status === 'online' ? 'text-blue-900' : 'text-red-500' }`}>{user.status}</p>
                         </div>
                     </div>
-                   ))} 
+                   ))}
                 </div>
             </div>
             {selectedUser ? (
-            <div className='h-full w-150 bg-blue-300/50 rounded-r-md'>
-                {/* <UserMessage /> */}
-            </div>) 
+            <div className='p-1 h-full w-150 bg-blue-300/50 rounded-r-md flex flex-col'>
+                <div className='h-full w-full border-2 border-black rounded-2xl'>
+                    <div className='w-full h-auto rounded-3xl flex justify-between'>
+                        <h1 className='text-3xl pl-5 pt-1'>{selectedUser.name}<p className='text-xs'>{selectedUser.status}</p></h1>
+                        {/* Hamburger Icon for logout and settings could be also */}
+                    </div>
+                    <hr className='h-0'/>
+                    <div className='w-full bg-gray-400 flex-1'>
+                    
+                    </div>
+                </div>
+            </div>)
             :
             (<div className='h-full w-150 bg-blue-300/50 flex items-center justify-center font-mono text-5xl font-bold rounded-r-md'>
             Please select a user to chat with...
