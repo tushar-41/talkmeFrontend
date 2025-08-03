@@ -8,6 +8,7 @@ import {io} from 'socket.io-client';
 
 export default function Home() {
 
+  let isLogin = true;
   const [data,setData] = useState('');
 
 
@@ -32,7 +33,7 @@ export default function Home() {
         <div className="flex items-center justify-center gap-20">
          <div className="relative inline-block rounded-xl p-[2px] overflow-hidden">
           <div className="absolute inset-0 rounded-xl bg-[conic-gradient(red,orange,yellow,green,blue,indigo,violet,red)] animate-spin-slow z-0" />
-            <Link href={'/chat'}>
+            <Link href={!isLogin ? '/chat' : '/login'}>
             <button className="relative z-10 px-6 py-2 bg-black text-white rounded-xl hover:bg-white hover:text-black hover:cursor-pointer transition-all duration-300">
               Get started
             </button>
