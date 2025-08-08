@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import React, { useRef, useState } from 'react'
 
 const LoginPage = () => {
@@ -7,10 +8,13 @@ const LoginPage = () => {
     const inputRef = useRef(null);
     const [emailField,setEmailField] = useState('');
     const emailRef = useRef(null);
+    const [formData,setFormData] = useState({
+        name:'',
+        email:'',
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.value);
     }
 
   return (
@@ -28,6 +32,14 @@ const LoginPage = () => {
                 value={emailField} onChange={(e) => setEmailField(e.target.value)} ref={emailRef}/>
                 <button type='submit' className='text-3xl font-mono bg-purple-500 hover:bg-white hover:text-black px-6 py-2 rounded-2xl transition-all duration-300'>Submit</button>
             </form>
+            <p className='mt-3 text-sm font-sans text-white'>
+                Did not have account ?
+                <span className='text-pink-600 ml-2'>
+                <Link href={'/signup'}>
+                Signup Please
+                </Link>
+                </span>
+            </p>
         </div>
     </div>
   )

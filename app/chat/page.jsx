@@ -1,7 +1,8 @@
 'use client';
 import { Chatbox } from '@/components/Chatbox';
 import UserMessage from '@/components/UserMessage';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { io } from 'socket.io-client';
 
 const ChatPage = () => {
 
@@ -25,10 +26,19 @@ const ChatPage = () => {
        setMessages(
         [...messages,messageInput]
        );
+    });
 
+    useEffect(() => {
+        io.on('connect',() => {
+            console.log('connection established',io.id);
 
-    })
+            io.on('receivedMessage', (data) => {
+                setMessages((prev) => [...prev , data]);
+                
+            })
+        });
 
+    },[]);
 
   return (
     <div className='flex items-center justify-center bg-gradient-to-t from-blue-400 to-[#10172a] h-screen'>
