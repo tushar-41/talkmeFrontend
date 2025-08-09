@@ -8,13 +8,16 @@ const LoginPage = () => {
     const inputRef = useRef(null);
     const [emailField,setEmailField] = useState('');
     const emailRef = useRef(null);
-    const [formData,setFormData] = useState({
-        name:'',
-        email:'',
-    });
+    const [formData,setFormData] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setFormData((prev) => [...prev,{
+            name:inputField,
+            email:emailField,
+        }]);
+
+        console.log(formData);
     }
 
   return (
@@ -45,4 +48,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default LoginPage;
