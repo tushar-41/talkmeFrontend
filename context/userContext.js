@@ -1,15 +1,11 @@
 'use client';
 
-import React from 'react'
+import React, { useContext } from 'react'
 import { createContext } from 'react';
 
-const userContext = () => {
-
-//user context functions
-
-  return (
-    <div>userContext</div>
-  )
+function userContext(){
+  const userDetails = useContext();
+  // user context details
 }
 
 export default userContext
