@@ -8,16 +8,22 @@ const LoginPage = () => {
     const inputRef = useRef(null);
     const [emailField,setEmailField] = useState('');
     const emailRef = useRef(null);
-    const [formData,setFormData] = useState([]);
+    const [formData,setFormData] = useState({
+        name:'Default',
+        email:'Default',
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setFormData((prev) => [...prev,{
-            name:inputField,
-            email:emailField,
-        }]);
-
         console.log(formData);
+    }
+
+    const handleChange = (e) => {
+        const {name,value} = e.target;
+        setFormData(prev=> ({
+            ...prev,
+           [name]:value,
+        }));
     }
 
   return (
@@ -29,10 +35,10 @@ const LoginPage = () => {
             <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center'>
                 <label htmlFor='name' className='text-xl font-semibold pr-10 mb-2' onClick={() => inputRef.current.focus()}>What's ur name?</label>
                 <input type="text" id='name' className='text-white text-sm font-mono p-2 rounded-2xl border-none mb-4' 
-                value={inputField} onChange={(e) => setInputField(e.target.value)} ref={inputRef} autoFocus/>
+                value={formData.name} onChange={() => handleChange} ref={inputRef} autoFocus/>
                 <label htmlFor='email' className='text-xl font-semibold pr-10 mb-2' onClick={() => emailRef.current.focus()}>What's ur email?</label>
                 <input type="text" id='name' className='text-white text-sm font-mono p-2 rounded-2xl border-none mb-4' 
-                value={emailField} onChange={(e) => setEmailField(e.target.value)} ref={emailRef}/>
+                value={formData.email} onChange={() => handleChange} ref={emailRef}/>
                 <button type='submit' className='text-3xl font-mono bg-purple-500 hover:bg-white hover:text-black px-6 py-2 rounded-2xl transition-all duration-300'>Submit</button>
             </form>
             <p className='mt-3 text-sm font-sans text-white'>
