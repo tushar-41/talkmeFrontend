@@ -34,11 +34,11 @@ const LoginPage = () => {
                 Hello Cutie Login please</h1>
             <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center'>
                 <label htmlFor='name' className='text-xl font-semibold pr-10 mb-2' onClick={() => inputRef.current.focus()}>What's ur name?</label>
-                <input type="text" id='name' className='text-white text-sm font-mono p-2 rounded-2xl border-none mb-4' 
-                value={formData.name} onChange={() => handleChange} ref={inputRef} autoFocus/>
+                <input type="text" id='name' name='name' className='text-white text-sm font-mono p-2 rounded-2xl border-none mb-4' 
+                value={formData.name} onChange={handleChange} ref={inputRef} autoFocus/>
                 <label htmlFor='email' className='text-xl font-semibold pr-10 mb-2' onClick={() => emailRef.current.focus()}>What's ur email?</label>
-                <input type="text" id='name' className='text-white text-sm font-mono p-2 rounded-2xl border-none mb-4' 
-                value={formData.email} onChange={() => handleChange} ref={emailRef}/>
+                <input type="text" id='name' name='email' className='text-white text-sm font-mono p-2 rounded-2xl border-none mb-4' 
+                value={formData.email} onChange={handleChange} ref={emailRef}/>
                 <button type='submit' className='text-3xl font-mono bg-purple-500 hover:bg-white hover:text-black px-6 py-2 rounded-2xl transition-all duration-300'>Submit</button>
             </form>
             <p className='mt-3 text-sm font-sans text-white'>
