@@ -1,21 +1,29 @@
 'use client';
+import axios from 'axios';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react'
 
 const LoginPage = () => {
 
-    const [inputField,setInputField] = useState('');
     const inputRef = useRef(null);
-    const [emailField,setEmailField] = useState('');
     const emailRef = useRef(null);
     const [formData,setFormData] = useState({
         name:'Default',
         email:'Default',
     });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(formData);
+        try {
+            const data = await axios.post('http://localhost:8080',{formData});
+
+            if(!data){
+                return new Error('Connection to the backend failed');
+            }
+        } catch (error) {
+            return new Error('Submitting form failed' + error.message);
+        }
     }
 
     const handleChange = (e) => {
