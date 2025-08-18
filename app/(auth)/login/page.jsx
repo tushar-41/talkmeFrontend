@@ -57,6 +57,9 @@ const LoginPage = () => {
                 </Link>
                 </span>
             </p>
+            <p>
+                Alter link
+            </p>
         </div>
     </div>
   )
