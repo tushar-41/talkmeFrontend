@@ -8,18 +8,24 @@ const LoginPage = () => {
     const inputRef = useRef(null);
     const emailRef = useRef(null);
     const [formData,setFormData] = useState({
-        name:'Default',
-        email:'Default',
+        name:'',
+        email:'',
     });
 
     const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(formData);
         try {
-            const data = await axios.post('http://localhost:8080',{formData});
+            const data = await axios.post('http://localhost:8080/login',formData);
 
             if(!data){
                 return new Error('Connection to the backend failed');
+            }else{
+                if(data.token){
+                    localStorage.setItem('token',data.token);
+                }else{
+                    console.log('Token is not available');
+                }
             }
         } catch (error) {
             return new Error('Submitting form failed' + error.message);
@@ -57,10 +63,7 @@ const LoginPage = () => {
                 </Link>
                 </span>
             </p>
-            <p>
-                Alter link
-            </p>
-        </div>
+    </div>  
     </div>
   )
 }

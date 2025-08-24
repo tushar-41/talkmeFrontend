@@ -3,6 +3,7 @@ import { Chatbox } from '@/components/Chatbox';
 import UserMessage from '@/components/UserMessage';
 import React, { useEffect, useState } from 'react'
 import { io } from 'socket.io-client';
+import SelectedUser from './_components/SeletedUser';
 
 const ChatPage = () => {
 
@@ -28,17 +29,17 @@ const ChatPage = () => {
        );
     });
 
-    useEffect(() => {
-        io.on('connect',() => {
-            console.log('connection established',io.id);
+    // useEffect(() => {
+    //     io.on('connect',() => {
+    //         console.log('connection established',io.id);
 
-            io.on('receivedMessage', (data) => {
-                setMessages((prev) => [...prev , data]);
+    //         io.on('receivedMessage', (data) => {
+    //             setMessages((prev) => [...prev , data]);
                 
-            })
-        });
+    //         })
+    //     });
 
-    },[]);
+    // },[]);
 
   return (
     <div className='flex items-center justify-center bg-gradient-to-t from-blue-400 to-[#10172a] h-screen'>
@@ -60,14 +61,15 @@ const ChatPage = () => {
             {selectedUser ? (
             <div className='p-1 h-full w-150 bg-blue-300/50 rounded-r-md flex flex-col'>
                 <div className='h-full w-full border-2 border-black rounded-2xl'>
-                    <div className='w-full h-auto rounded-3xl flex justify-between'>
+                    {/* <div className='w-full h-auto rounded-3xl flex justify-between'>
                         <h1 className='text-3xl pl-5 pt-1'>{selectedUser.name}<p className='text-xs'>{selectedUser.status}</p></h1>
                         {/* Hamburger Icon for logout and settings could be also */}
-                    </div>
+                    {/* </div>
                     <hr className='h-0'/>
                     <div className='w-full bg-gray-400 flex-1'>
                     
-                    </div>
+                    </div> */}
+                    <SelectedUser selectedUser={selectedUser} />
                 </div>
             </div>)
             :

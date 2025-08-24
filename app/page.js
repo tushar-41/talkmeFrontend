@@ -1,10 +1,7 @@
 'use client';
 
-import Navbar from "@/components/Navbar";
-import axios from "axios";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import {io} from 'socket.io-client';
+import { useState } from "react";
 
 export default function Home() {
 
@@ -12,8 +9,6 @@ export default function Home() {
   const [data,setData] = useState('');
 
 
-  useEffect(() => {
-  } ,[]);
 
 
   return (
