@@ -5,12 +5,7 @@ import { useState } from "react";
 
 export default function Home() {
 
-  let isLogin = true;
-  const [data,setData] = useState('');
-
-
-
-
+  
   return (
     <div>
        <div className="min-h-screen bg-gradient-to-t from-blue-400 to-[#10172a] h-screen">

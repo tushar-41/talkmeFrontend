@@ -1,11 +1,22 @@
 'use client';
 
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { createContext } from 'react';
 
-function userContext(){
-  const userDetails = useContext();
-  // user context details
+const userContext = createContext();
+
+function userContext({children}){
+  const [userDetail,setUserDetail] = useState('');
+
+  const currentUser = (userId) => {
+    setUserDetail(userId);
+  }
+  
+  return(
+    <userContext.Provider value={{userDetail,currentUser}}>
+      {children}
+    </userContext.Provider>
+  );
 }
 
-export default userContext
+export default userContext;

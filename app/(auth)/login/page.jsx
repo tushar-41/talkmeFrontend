@@ -1,9 +1,12 @@
 'use client';
+import userContext from '@/context/userContext';
 import axios from 'axios';
 import Link from 'next/link';
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 
 const LoginPage = () => {
+
+    const userDetail = useContext(userContext);
 
     const inputRef = useRef(null);
     const emailRef = useRef(null);
