@@ -5,7 +5,7 @@ import { createContext } from 'react';
 
 const userContext = createContext();
 
-function userContext({children}){
+function userProvider({children}){
   const [userDetail,setUserDetail] = useState('');
 
   const currentUser = (userId) => {
@@ -19,4 +19,4 @@ function userContext({children}){
   );
 }
 
-export default userContext;
+export default userProvider;

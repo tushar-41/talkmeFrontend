@@ -16,7 +16,7 @@ const ChatPage = () => {
         {name:'Shukla',status:'online',id:6},
     ]
 
-    const [selectedUser,setSelectedUser] = useState(null);
+    const [selectedUser,setSelectedUser] = useState('');
     const [messageInput,setMessageInput] = useState('');
     const [currentUser,setCurrentUser] = useState(dummyUser[0]); //Tushar sharma
     const [messages,setMessages] = useState([]);
@@ -50,7 +50,7 @@ const ChatPage = () => {
                 <input placeholder='Search user...' autoFocus className='mt-2 border-2 hover:border-blue-700 w-40 p-1 rounded-3xl mb-2 text-center placeholder-black' onChange={(e) => handleInputchange(e.target)}/>
                 <div className='flex flex-col gap-5 w-40'>
                    {dummyUser.filter((user) => user.id !== currentUser.id).map((user) => (
-                    <div className='border-2 border-gray-500 rounded-md w-full hover:cursor-pointer pl-1 pt-1' key={user.id} onClick={() => setSelectedUser(user)}>
+                    <div className='border-2 border-gray-500 rounded-md w-full hover:cursor-pointer pl-1 pt-1' key={user.id} onClick={() => setSelectedUser((user.name))}>
                         <div className='text-2xl'>{user.name}
                             <p className={`text-xs font-mono ${user.status === 'online' ? 'text-blue-900' : 'text-red-500' }`}>{user.status}</p>
                         </div>
@@ -58,17 +58,9 @@ const ChatPage = () => {
                    ))}
                 </div>
             </div>
-            {selectedUser ? (
+            {selectedUser.length > 0 ? (
             <div className='p-1 h-full w-150 bg-blue-300/50 rounded-r-md flex flex-col'>
                 <div className='h-full w-full border-2 border-black rounded-2xl'>
-                    {/* <div className='w-full h-auto rounded-3xl flex justify-between'>
-                        <h1 className='text-3xl pl-5 pt-1'>{selectedUser.name}<p className='text-xs'>{selectedUser.status}</p></h1>
-                        {/* Hamburger Icon for logout and settings could be also */}
-                    {/* </div>
-                    <hr className='h-0'/>
-                    <div className='w-full bg-gray-400 flex-1'>
-                    
-                    </div> */}
                     <SelectedUser selectedUser={selectedUser} />
                 </div>
             </div>)
