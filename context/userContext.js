@@ -12,6 +12,8 @@ function userProvider({children}){
     setUserDetail(userId);
   }
   
+  
+
   return(
     <userContext.Provider value={{userDetail,currentUser}}>
       {children}
