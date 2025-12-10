@@ -1,24 +1,27 @@
-'use client';
+"use client";
 
-import React, { useContext, useState } from 'react'
-import { createContext } from 'react';
+import { socket } from "@/libs/socket";
+import React, { useContext, useState } from "react";
+import { createContext } from "react";
+import { Socket } from "socket.io-client";
 
-const userContext = createContext();
+const UserContext = createContext();
 
-function userProvider({children}){
-  const [userDetail,setUserDetail] = useState('');
+function UserProvider({ children }) {
+  const [userDetail, setUserDetail] = useState("");
+  const [socketId, setSocketId] = useState(null);
 
   const currentUser = (userId) => {
     setUserDetail(userId);
-  }
-  
-  
+  };
 
-  return(
-    <userContext.Provider value={{userDetail,currentUser}}>
+  //getting user for sidebar
+
+  return (
+    <UserContext.Provider value={{ userDetail, currentUser }}>
       {children}
-    </userContext.Provider>
+    </UserContext.Provider>
   );
 }
 
-export default userProvider;
+export default UserProvider;

@@ -53,65 +53,63 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-700 to-red-400 flex justify-center items-center">
-      <div className="h-120 w-100 border rounded-2xl bg-black shadow-2xl shadow-white flex flex-col items-center gap-15">
-        <h1
-          className="text-2xl tracking-tighter font-bold bg-gradient-to-r from-blue-700 to-gray-500
+    <div className="absolute right-30 h-120 w-[25%] border rounded-2xl bg-white/20 backdrop-blur-2xl flex flex-col items-center gap-15">
+      <h1
+        className="text-2xl tracking-tighter font-bold bg-black
              text-transparent bg-clip-text mt-6"
+      >
+        Hello Cutie Login please
+      </h1>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center justify-center"
+      >
+        <label
+          htmlFor="email"
+          className="text-xl font-semibold pr-10 mb-2"
+          onClick={() => inputRef.current.focus()}
         >
-          Hello Cutie Login please
-        </h1>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col items-center justify-center"
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          className="text-white text-sm font-mono p-2 rounded-sm border border-white mb-4 outline-none focus:ring focus:ring-white"
+          value={formData.email}
+          onChange={handleChange}
+          ref={inputRef}
+          autoFocus
+        />
+        <label
+          htmlFor="password"
+          className="text-xl font-semibold pr-10 mb-2"
+          onClick={() => emailRef.current.focus()}
         >
-          <label
-            htmlFor="email"
-            className="text-xl font-semibold pr-10 mb-2"
-            onClick={() => inputRef.current.focus()}
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            className="text-white text-sm font-mono p-2 rounded-2xl border-none mb-4"
-            value={formData.email}
-            onChange={handleChange}
-            ref={inputRef}
-            autoFocus
-          />
-          <label
-            htmlFor="password"
-            className="text-xl font-semibold pr-10 mb-2"
-            onClick={() => emailRef.current.focus()}
-          >
-            Password
-          </label>
-          <input
-            type="text"
-            id="password"
-            name="password"
-            className="text-white text-sm font-mono p-2 rounded-2xl border-none mb-4"
-            value={formData.password}
-            onChange={handleChange}
-            ref={emailRef}
-          />
-          <button
-            type="submit"
-            className="text-3xl font-mono bg-purple-500 hover:bg-white hover:text-black px-6 py-2 rounded-2xl transition-all duration-300"
-          >
-            Submit
-          </button>
-        </form>
-        <p className="mt-3 text-sm font-sans text-white">
-          Did not have account ?
-          <span className="text-pink-600 ml-2">
-            <Link href={"/signup"}>Signup Please</Link>
-          </span>
-        </p>
-      </div>
+          Password
+        </label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          className="text-white text-sm font-mono p-2 rounded-sm border border-white mb-4 outline-none focus:ring focus:ring-white"
+          value={formData.password}
+          onChange={handleChange}
+          ref={emailRef}
+        />
+        <button
+          type="submit"
+          className="text-3xl font-mono bg-purple-500 hover:bg-white hover:text-black px-6 py-2 rounded-2xl transition-all duration-300"
+        >
+          Submit
+        </button>
+      </form>
+      <p className="mt-3 text-sm font-sans text-white">
+        Did not have account ?
+        <span className="text-pink-600 ml-2">
+          <Link href={"/signup"}>Signup Please</Link>
+        </span>
+      </p>
     </div>
   );
 };
