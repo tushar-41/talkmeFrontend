@@ -1,10 +1,5 @@
-import React from 'react'
-import { io } from 'socket.io-client'
+import React from "react";
 
 export const Chatbox = () => {
-  
-  
-  return (
-    <div>Chatarea</div>
-  )
-}
+  return <div>Chatarea</div>;
+};

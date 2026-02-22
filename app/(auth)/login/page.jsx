@@ -1,10 +1,14 @@
 "use client";
+import { UserContext } from "@/context/userContext";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useContext, useRef, useState } from "react";
+import { toast } from "sonner";
 
 const LoginPage = () => {
+  const { currentUser } = useContext(UserContext);
+
   const inputRef = useRef(null);
   const emailRef = useRef(null);
   const [formData, setFormData] = useState({
@@ -16,7 +20,6 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     try {
       const data = await axios.post(
         "http://localhost:8080/api/auth/login",
@@ -27,20 +30,16 @@ const LoginPage = () => {
           },
         }
       );
-
-      if (!data) {
-        console.log("Data not received");
-        return new Error("Connection to the backend failed");
-      } else {
-        if (data.token) {
-          localStorage.setItem("token", data.token);
-        } else {
-          console.log("Token is not available");
-        }
+      if (data) {
+        localStorage.setItem("token", data.data.token);
+        currentUser(data.data.user);
+        localStorage.setItem("userId", data.data.user._id);
         router.push("/chat");
+        toast.success(`Welcome ${data.data.user.name}`);
       }
     } catch (error) {
-      return new Error("Submitting form failed" + error.message);
+      console.log(error);
+      toast.error("Error at Login");
     }
   };
 

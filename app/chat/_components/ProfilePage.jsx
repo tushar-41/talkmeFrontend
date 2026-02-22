@@ -10,7 +10,7 @@ const ProfilePage = ({ setSelectedUser }) => {
     const value = e.target.value.toLowerCase();
 
     const results = dummyUserList.filter((user) =>
-      user.name.toLowerCase().includes(value)
+      user.name.toLowerCase().includes(value),
     );
     setFilteredUsers(results);
   };
@@ -28,7 +28,7 @@ const ProfilePage = ({ setSelectedUser }) => {
           />
 
           <span className="ml-2 pt-1 tracking-wide text-center rounded-2xl font-normal text-white text-xl">
-            {userSkills.name}
+            Tushar Kumar
           </span>
         </div>
 
@@ -81,36 +81,6 @@ const ProfilePage = ({ setSelectedUser }) => {
 };
 
 export default ProfilePage;
-
-// USER DATA
-const userSkills = {
-  name: "Tushar Kumar",
-  image: "/chat2.webp",
-  frontEndSkils: [
-    { name: "Javascript", experience: "1 Year" },
-    { name: "ReactJs", experience: "6 Month" },
-    { name: "NextJs", experience: "6 Month" },
-    { name: "Tailwind", experience: "1 Year" },
-    { name: "BootStrap", experience: "1 Year" },
-    { name: "Css", experience: "1.5 Year" },
-    { name: "html5", experience: "1.5 Year" },
-  ],
-  backEndSkills: [
-    { name: "NodeJs", experience: "1 Year" },
-    { name: "expressJs", experience: "1 Year" },
-    { name: "MongoDB", experience: "1 Year" },
-    { name: "MySql", experience: "1 Year" },
-    { name: "Socket.io", experience: "6 Month" },
-  ],
-  devOps: [
-    { name: "Docker", experience: "6 Month" },
-    { name: "Aws Ec2", experience: "6 Month" },
-    { name: "Aws S3", experience: "6 Month" },
-    { name: "Kafka", experience: "2 Month" },
-    { name: "GitHub", experience: "1 Year" },
-    { name: "GitHub Actions", experience: "1 Year" },
-  ],
-};
 
 // DUMMY USERS
 const dummyUserList = [

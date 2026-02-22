@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
@@ -17,18 +18,25 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post("http://localhost:8080", formData, {
-        headers: { "content-type": "application/json" },
-      });
-      if (!data) {
-        return new Error("Signup route has problem");
+      const data = await axios.post(
+        "http://localhost:8080/api/auth/signup",
+        formData,
+        {
+          headers: { "content-type": "application/json" },
+        }
+      );
+      if (!data.data.ok) {
+        toast.error(data.error);
+        return;
       } else {
         // save the response here from the backend
-        console.log(data.data.token);
+
+        console.log(data);
         const token = data.data.token;
         localStorage.setItem("token", token);
+        router.push("/chat");
+        toast.success("Welcome to the Talkme");
       }
-      router.push("/chat");
     } catch (error) {
       console.log(error.message);
     }

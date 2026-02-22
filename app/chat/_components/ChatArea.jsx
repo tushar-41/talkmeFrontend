@@ -30,12 +30,12 @@ const ChatArea = ({ selectedUser }) => {
           <div>
             <MoreVertical />
           </div>
-          <div className="absolute right-2 h-auto w-25 px-1 border border-neutral-400 rounded-md hidden group-hover:block">
-            <h1 className="font-normal text-white/80 text-[20px] px-2 hover:text-white/50 hover:cursor-pointer">
+          <div className="absolute right-2 h-auto w-25 px-1 border bg-slate-800 border-neutral-400 rounded-md hidden group-hover:block">
+            <h1 className="font-normal text-white/80 text-[15px] px-2 hover:text-white/50 hover:cursor-pointer">
               Profile
             </h1>
             <hr className="text-neutral-400" />
-            <button className="text-white/80 text-[20px] px-2 hover:text-white/50 hover:cursor-pointer">
+            <button className="text-white/80 text-[15px] px-2 hover:text-white/50 hover:cursor-pointer">
               Logout
             </button>
           </div>

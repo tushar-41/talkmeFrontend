@@ -1,11 +1,13 @@
 "use client";
 
-import { socket } from "@/libs/socket";
-import React, { useContext, useState } from "react";
+import { io } from "socket.io-client";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { createContext } from "react";
-import { Socket } from "socket.io-client";
 
-const UserContext = createContext();
+const backendUrl = "http://localhost:8081";
+
+export const UserContext = createContext();
 
 function UserProvider({ children }) {
   const [userDetail, setUserDetail] = useState("");
@@ -14,6 +16,19 @@ function UserProvider({ children }) {
   const currentUser = (userId) => {
     setUserDetail(userId);
   };
+
+  // const socket = io(backendUrl, {
+  //   autoConnect: false,
+  //   auth: {
+  //     userId: localStorage.getItem("userId"),
+  //   },
+  // });
+
+  // useEffect(() => {
+  //   socket.connect();
+
+  //   return () => socket.disconnect();
+  // }, []);
 
   //getting user for sidebar
 
